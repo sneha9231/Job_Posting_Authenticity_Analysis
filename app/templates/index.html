@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Fraud Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 50%;
+            text-align: center;
+        }
+        h1 {
+            color: #5A3D7E;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #5A3D7E;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #4b2e67;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #e8f0fe;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .result p {
+            margin: 5px 0;
+        }
+        .result b {
+            color: #5A3D7E;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Job Fraud Detection</h1>
+        
+        <form action="/predict" method="POST">
+            <textarea name="text" placeholder="Enter the job description here..." rows="5" required>{{ data }}</textarea>
+            <br><br>
+            <button type="submit">Predict</button>
+        </form>
+        
+        {% if prediction_result %}
+        <div class="result">
+            <h2>Prediction Result:</h2>
+            <p><b>Prediction:</b> {{ prediction_result }}</p>
+            <p><b>Naive Bayes Prediction:</b> {{ nb_result }}</p>
+            <p><b>Linear SVM Prediction:</b> {{ svm_result }}</p>
+            <p><b>Random Forest Prediction:</b> {{ rf_result }}</p>
+            <p><b>XGBoost Prediction:</b> {{ xgb_result }}</p>
+            <p><b>Logistic Regression Prediction:</b> {{ lr_result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
