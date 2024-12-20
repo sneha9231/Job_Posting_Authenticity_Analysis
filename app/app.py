@@ -30,6 +30,10 @@ fraudulent_keywords = [
     "Fraud"
 ]
 
+@app.route("/", methods=["GET"])
+def home():
+    return render_template("index.html", data="")
+
 @app.route("/predict", methods=["POST"])
 def predict():
     data = request.form.get("text")
@@ -57,6 +61,7 @@ def predict():
         lr_result = "Legitimate" if lr_pred == 0 else "Fraudulent"
         
         prediction_result = "Legitimate" if nb_pred == 0 else "Fraudulent"
+    
     return render_template("index.html", 
                            data=data, 
                            prediction_result=prediction_result, 
