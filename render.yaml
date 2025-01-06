@@ -3,5 +3,5 @@ services:
     name: Job_Posting_Authenticity_Analysis
     runtime: python
     buildCommand: pip install -r app/requirements.txt
-    startCommand: python app/app.py
+    startCommand: gunicorn app.app:app
 
